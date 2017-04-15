@@ -9,9 +9,14 @@ import unicodecsv
 output_csv = "data/tatort_reviews.csv"
 my_access_token = "yourfacebookaccesstoken"
 
-# e.g. https://www.facebook.com/Tatort/posts/10154600148961693
-fb_post_ids = ["38246844868_10154672524546693", "38246844868_10154645692951693", "38246844868_10154600148961693"]
-data_limit = 200
+# these IDs have the format profilePageId_postId
+# e.g. https://www.facebook.com/DasErste/posts/10154756104298232
+fb_post_ids = ["176772398231_10155003108798232",
+               "176772398231_10154893279488232",
+               "176772398231_10154870567618232",
+               "176772398231_10154781611828232",
+               "176772398231_10154756104298232" ]
+data_limit = 400
 
 graph = facebook.GraphAPI(access_token=my_access_token)
 comments = []
@@ -23,4 +28,4 @@ for post_id in fb_post_ids:
 with open(output_csv, 'wb') as csvfile:
     comments_writer = unicodecsv.writer(csvfile, delimiter=',')
     for comment in comments:
-        comments_writer.writerow([comment['message'], 2])
+        comments_writer.writerow([comment['message'].lower(), 2])
