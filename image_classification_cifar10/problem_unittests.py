@@ -4,6 +4,7 @@ import tensorflow as tf
 import random
 from unittest.mock import MagicMock
 
+# File provided by Udaccity
 
 def _print_success_message():
     print('Tests Passed')
